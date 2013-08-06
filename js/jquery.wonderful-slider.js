@@ -1,11 +1,11 @@
 (function($) {
 	
-	var Beef = function(el,options) {
+	var Revolver = function(el,options) {
 		
-		var $beef = this;
+		var $revolver = this;
 		
 		// settings and local vars
-		var settings = $.extend({}, $.fn.beef.defaults, options);
+		var settings = $.extend({}, $.fn.revolver.defaults, options);
 		var vars = {
 			activeClass		: 'wonderful-slide-active',
 			currSlide		: 1,
@@ -35,7 +35,7 @@
 		// my private parts
 		var determineNextAction = function() {
 			if(!vars.isPaused) {
-				$beef.start();
+				$revolver.start();
 			}
 		}
 		
@@ -77,6 +77,16 @@
 		var setupControls = function() {
 			trace('Setting up controls');
 			
+			if(settings.manualButton !== null) {
+				$(settings.manualButton).click(function(e) {
+					e.preventDefault();
+					var slide = $(this).attr('data-slide');
+					if(slide) {
+						showSlide(slide);
+					}
+				});
+			}
+
 			if(settings.nextButton !== null) {
 				$(settings.nextButton).click(function(e) {
 					e.preventDefault();
@@ -106,10 +116,10 @@
 			
 			if(settings.pauseOnHover) {
 				$parent.hover(function() {
-					$beef.pause();
+					$revolver.pause();
 				},
 				function() {
-					$beef.start();
+					$revolver.start();
 				});
 			}
 		}
@@ -129,7 +139,7 @@
 			trace('Show slide '+i);
 
 			// stop timer
-			$beef.stop();
+			$revolver.stop();
 			
 			vars.isAnimating = true;
 
@@ -171,6 +181,9 @@
 						hidePreviousSlide();
 						determineNextAction();
 						vars.isAnimating = false;
+						
+						// callback
+						settings.afterChange.call(this,vars);
 					});
 				
 			
@@ -208,6 +221,9 @@
 						hidePreviousSlide();
 						determineNextAction();
 						vars.isAnimating = false;
+						
+						// callback
+						settings.afterChange.call(this,vars);
 				});
 				
 			} else if(settings.transition == 'slide') {
@@ -229,6 +245,7 @@
 				
 				// default is to slide from right
 				nextStartParams.left = '100%';
+				nextEndParams.left = 0;
 				prevEndParams.left = '-100%';
 				
 				// slide from right?
@@ -274,6 +291,9 @@
 					vars.currSlide = vars.nextSlide;
 					determineNextAction();
 					vars.isAnimating = false;
+					
+					// callback
+					settings.afterChange.call(this,vars);
 				});
 				
 				$children.eq(vars.prevSlide-1).animate(prevEndParams,settings.transitionSpeed);
@@ -291,7 +311,7 @@
 		
 		this.pause = function() {
 			trace('Pause');
-			$beef.stop();
+			$revolver.stop();
 			vars.isPaused = true;
 		}
 		
@@ -312,36 +332,40 @@
 		setup();
 		
 		if(settings.autoplay) {
-			$beef.start();
+			$revolver.start();
 		}
 		
 	}
 	
 	// plug it in
-	$.fn.beef = function(options) {
+	$.fn.revolver = function(options) {
         return this.each(function(key, value){
             var element = $(this);
             // Return early if this element already has a plugin instance
-            if (element.data('beef')) { return element.data('beef'); }
+            if (element.data('revolver')) { return element.data('revolver'); }
             // Pass options to plugin constructor
-            var beef = new Beef(this, options);
+            var revolver = new Revolver(this, options);
             // Store plugin object in this element's data
-            element.data('beef', beef);
+            element.data('revolver', revolver);
         });
     };
 
-	$.fn.beef.defaults = {
+	$.fn.revolver.defaults = {
 		autoplay			: true,
 		childrenEls			: 'div',
 		debug				: false,
 		hideInactiveSlides	: true,
 		nextButton			: null,
+		manualButton		: null,
 		prevButton			: null,
 		pauseOnHover		: true,
 		rotationDelay		: 2000,
 		transition			: 'fadeIn',
 		transitionDir		: 'none',
-		transitionSpeed		: 1000
+		transitionSpeed		: 1000,
+		afterLoad			: function() {},
+		afterChange			: function() {},
+		beforeChange		: function() {}
     };
 	
 }(jQuery));

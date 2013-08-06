@@ -60,8 +60,25 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.slider {
+	background:#666;
+	height:500px;
+}
 
-
+.slider .slide {
+	background-position:center center;
+	background-repeat:no-repeat;
+	-webkit-background-size:auto 100%;
+	-moz-background-size:auto 100%;
+	-o-background-size:auto 100%;
+	background-size:auto 100%;
+	-webkit-background-size:cover;
+	-moz-background-size:cover;
+	-o-background-size:cover;
+	background-size:cover;
+	height:100%;
+	width:100%;
+}
 
 
 

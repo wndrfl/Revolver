@@ -14,12 +14,15 @@
     </head>
     <body>
 
-        <div id="slider" style="background:#666; height:500px;">
-			<div><img src="http://placehold.it/960x500&text=slide+1"></div>
-			<div><img src="http://placehold.it/500x960&text=slide+2"></div>
-			<div><img src="http://placehold.it/960x500&text=slide+3"></div>
+        <div id="slider" class="slider">
+			<div class="slide" style='background-image:url("http://placehold.it/1500x500&text=This+is+the+Revolver+Slider...");'></div>
+			<div class="slide" style='background-image:url("http://placehold.it/1500x500&text=...it+is+easy+to+use...");'></div>
+			<div class="slide" style='background-image:url("http://placehold.it/1500x500&text=...and+looks+sweet.");'></div>
 		</div>
 		<a id="prev">Prev</a>
+		<a class="manual-advance" data-slide="1">1</a>
+		<a class="manual-advance" data-slide="2">2</a>
+		<a class="manual-advance" data-slide="3">3</a>
 		<a id="next">Next</a>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -29,15 +32,16 @@
 
 		<script type="text/javascript">
 		$(document).ready(function() {
-			$('#slider').beef({
+			$('#slider').revolver({
 				autoplay			: true,
-				debug				: true,
+				//debug				: true,
 				hideInactiveSlides 	: true,
+				manualButton		: '.manual-advance',
 				nextButton			: '#next',
 				prevButton			: '#prev',
 				pauseOnHover		: true,
-				transition			: 'slide',
-				transitionDir		: 'bottom'
+				transition			: 'fadeIn',
+				transitionDir		: 'left'
 			});
 		});
 		</script>
