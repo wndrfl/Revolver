@@ -3,14 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Revolver Slider</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.css">
-
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
 
@@ -26,15 +24,14 @@
 		<a id="next">Next</a>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="js/jquery-1.10.1.min.js"><\/script>')</script>
 
-        <script src="js/jquery.wonderful-slider.js"></script>
+        <script src="js/jquery.revolver.js"></script>
 
 		<script type="text/javascript">
 		$(document).ready(function() {
 			$('#slider').revolver({
 				autoplay			: true,
-				//debug				: true,
 				hideInactiveSlides 	: true,
 				manualButton		: '.manual-advance',
 				nextButton			: '#next',

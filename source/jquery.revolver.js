@@ -1,4 +1,12 @@
-(function($) {
+/**
+ * Revolver - jQuery Plugin
+ * version 1.0.0
+ * 
+ * Copyright 2013 Wonderful Co.
+ * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
+ **/
+
+;(function($) {
 	
 	var Revolver = function(el,options) {
 		
