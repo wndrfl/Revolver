@@ -128,9 +128,9 @@ Revolver comes with various built-in options for transitioning between slides. I
 
 <table>
 	<tr>
-		<td>Transition</td>
-		<td>Setting</td>
-		<td>Available directions</td>
+		<th>Transition</th>
+		<th>Setting</th>
+		<th>Available directions</th>
 	</tr>
 	<tr>
 		<td>Fade In</td>
