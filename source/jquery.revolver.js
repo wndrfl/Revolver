@@ -15,27 +15,34 @@
 		// settings and local vars
 		var settings = $.extend({}, $.fn.revolver.defaults, options);
 		var vars = {
-			activeClass		: 'wonderful-slide-active',
+			activeClass		: 'revolver-slide-active',
 			currSlide		: 1,
+			inactiveClass	: 'revolver-slide-inactive',
 			isAnimating		: false,
 			isPaused		: false,
 			nextSlide		: null,
-			prevClass		: 'wonderful-slide-previous',
 			prevSlide		: null,
 			reverseOnce		: false,
 			timerStart		: 0,
 			timeout 		: null,
-			wrapperClass	: 'wonderful-slide-wrapper'
+			wrapperClass	: 'revolver-slide-wrapper'
 		};
 		
 		// define main elements
 		var $parent = $(el);
 		
 		// create / define wrapper
-		var clone = $parent.html();
-		var wrapped = '<div class="'+vars.wrapperClass+'">'+clone+'</div>';
-		$parent.html(wrapped);
+		var c = [];
+		$parent.children(settings.childrenEls).each(function() {
+			c.push($(this).clone());
+			$(this).remove();
+		});
+		var wrapped = '<div class="'+vars.wrapperClass+'"></div>';
+		$parent.prepend(wrapped);
 		var $wrapper = $parent.children('.'+vars.wrapperClass).first();
+		$.each(c,function(i,v) {
+			$wrapper.append(c);
+		});
 		
 		// define children
 		var $children = $wrapper.children(settings.childrenEls);
@@ -51,7 +58,7 @@
 			if(settings.hideInactiveSlides) {
 				$children
 					.eq(vars.prevSlide-1)
-					.removeClass(vars.prevClass)
+					.removeClass(vars.inactiveClass)
 					.animate({'opacity':'0'},300);
 			}
 		}
@@ -60,6 +67,9 @@
 			setupParent();
 			setupChildren();
 			setupControls();
+			
+			// callback
+			settings.afterLoad.call(this,vars);
 		}
 		
 		var setupChildren = function() {
@@ -72,10 +82,13 @@
 					'top'		: '0',
 					'left'		: '0'
 				});
-				if($child.index() > 0 && settings.hideInactiveSlides) {
-					$child.css({
-						opacity		: 0,
-					});
+				if($child.index() > 0) {
+					$child.addClass(vars.inactiveClass);
+					if(settings.hideInactiveSlides) {
+						$child.css({
+							opacity		: 0,
+						});
+					}
 				}else{
 					$child.addClass(vars.activeClass);
 				}
@@ -145,10 +158,14 @@
 		
 		var showSlide = function(i) {
 			trace('Show slide '+i);
+			
+			// callback
+			settings.beforeChange.call(this,vars);
 
 			// stop timer
 			$revolver.stop();
 			
+			// lock
 			vars.isAnimating = true;
 
 			// queue next
@@ -159,7 +176,7 @@
 				
 				$children.eq(vars.currSlide-1)
 					.removeClass(vars.activeClass)
-					.addClass(vars.prevClass).css({
+					.addClass(vars.inactiveClass).css({
 					'z-index'	: '0'
 				});
 				vars.prevSlide = vars.currSlide;
@@ -200,7 +217,7 @@
 				
 				$children.eq(vars.currSlide-1)
 					.removeClass(vars.activeClass)
-					.addClass(vars.prevClass).css({
+					.addClass(vars.inactiveClass).css({
 					'z-index'	: '101'
 				});
 				vars.prevSlide = vars.currSlide;
@@ -292,16 +309,22 @@
 					prevEndParams.top = '-100%';
 				}
 				
+				$children.eq(vars.currSlide-1)
+					.removeClass(vars.activeClass)
+					.addClass(vars.inactiveClass);
+				
 				// animate next slide
-				$children.eq(vars.nextSlide-1).css(
-					nextStartParams
-				).animate(nextEndParams,settings.transitionDuration,function() {
-					vars.currSlide = vars.nextSlide;
-					determineNextAction();
-					vars.isAnimating = false;
+				$children.eq(vars.nextSlide-1)
+					.removeClass(vars.inactiveClass)
+					.addClass(vars.activeClass)
+					.css(nextStartParams)
+					.animate(nextEndParams,settings.transitionDuration,function() {
+						vars.currSlide = vars.nextSlide;
+						determineNextAction();
+						vars.isAnimating = false;
 					
-					// callback
-					settings.afterChange.call(this,vars);
+						// callback
+						settings.afterChange.call(this,vars);
 				});
 				
 				$children.eq(vars.prevSlide-1).animate(prevEndParams,settings.transitionDuration);

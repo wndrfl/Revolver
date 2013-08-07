@@ -60,12 +60,59 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-.slider {
+.revolver-button {
+	background-color:#fff;
+	background-color:rgba(255,255,255,0.8);
+	line-height:50px;
+	text-align:center;
+	width:50px;
+	height:50px;
+	margin-top:-25px;
+	display:block;
+	position:absolute;
+	z-index:200;
+	top:50%;
+	cursor:pointer;
+}
+.revolver-button.revolver-next {
+	right:0;
+}
+.revolver-button.revolver-prev {
+	left:0;
+}
+
+.revolver-manual-buttons {
+	text-align:center;
+	width:300px;
+	margin-left:-150px;
+	position:absolute;
+	z-index:200;
+	bottom:20px;
+	left:50%;
+}
+.revolver-manual-buttons .manual-advance {
+	background-color:#fff;
+	background-color:rgba(255,255,255,0.8);
+	font-size:16px;
+	width:30px;
+	height:30px;
+	margin:0 3px;
+	display:inline-block;
+	cursor:pointer;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+}
+.revolver-manual-buttons .manual-advance.active {
+	background-color:#c80309;
+}
+
+.revolver-slider {
 	background:#666;
 	height:500px;
 }
 
-.slider .slide {
+.revolver-slider .slide {
 	background-position:center center;
 	background-repeat:no-repeat;
 	-webkit-background-size:auto 100%;

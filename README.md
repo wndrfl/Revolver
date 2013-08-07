@@ -1,10 +1,10 @@
 #Revolver slider
 
-A jQuery content slider with built in, easy to customize transitions based on jQuery 1.3.2+.
+A jQuery content slider with built in, easy to customize transitions based on jQuery 1.6+.
 
 #Requirements
 
-Revolve requires jQuery 1.3.2+.
+Revolve requires jQuery 1.6+.
 
 #Getting started
 
