@@ -184,7 +184,7 @@
 						opacity		: 1,
 						top			: 0,
 						left 		: 0
-					},settings.transitionSpeed,function() {
+					},settings.transitionDuration,function() {
 						vars.currSlide = vars.nextSlide;
 						hidePreviousSlide();
 						determineNextAction();
@@ -224,7 +224,7 @@
 				
 				$children
 					.eq(vars.prevSlide-1)
-					.animate(fadeParams,settings.transitionSpeed,function() {
+					.animate(fadeParams,settings.transitionDuration,function() {
 						vars.currSlide = vars.nextSlide;
 						hidePreviousSlide();
 						determineNextAction();
@@ -295,7 +295,7 @@
 				// animate next slide
 				$children.eq(vars.nextSlide-1).css(
 					nextStartParams
-				).animate(nextEndParams,settings.transitionSpeed,function() {
+				).animate(nextEndParams,settings.transitionDuration,function() {
 					vars.currSlide = vars.nextSlide;
 					determineNextAction();
 					vars.isAnimating = false;
@@ -304,7 +304,7 @@
 					settings.afterChange.call(this,vars);
 				});
 				
-				$children.eq(vars.prevSlide-1).animate(prevEndParams,settings.transitionSpeed);
+				$children.eq(vars.prevSlide-1).animate(prevEndParams,settings.transitionDuration);
 			}
 			
 			// reset reverse-ness
@@ -370,7 +370,7 @@
 		rotationDelay		: 2000,
 		transition			: 'fadeIn',
 		transitionDir		: 'none',
-		transitionSpeed		: 1000,
+		transitionDuration		: 1000,
 		afterLoad			: function() {},
 		afterChange			: function() {},
 		beforeChange		: function() {}
