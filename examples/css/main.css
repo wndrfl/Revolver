@@ -115,7 +115,8 @@ textarea {
 
 .revolver-button {
 	background-color:#fff;
-	background-color:rgba(255,255,255,0.8);
+	background-repeat:no-repeat;
+	background-position:center center;
 	line-height:80px;
 	text-align:center;
 	width:50px;
@@ -134,6 +135,7 @@ textarea {
   	transition: opacity 0.3s ease-in-out;
 }
 .revolver-button.revolver-next {
+	background-image:url('../../images/next.png');
 	right:0;
 	-webkit-border-top-left-radius: 10px;
 	-webkit-border-bottom-left-radius: 10px;
@@ -143,6 +145,7 @@ textarea {
 	border-bottom-left-radius: 10px;
 }
 .revolver-button.revolver-prev {
+	background-image:url('../../images/prev.png');
 	left:0;
 	-webkit-border-top-right-radius: 10px;
 	-webkit-border-bottom-right-radius: 10px;
@@ -168,6 +171,7 @@ textarea {
   	transition: opacity 0.3s ease-in-out;
 }
 .revolver-manual-buttons .manual-advance {
+	border-top:2px solid rgba(255,255,255,0.3);
 	background-color:#fff;
 	background-color:rgba(255,255,255,0.8);
 	font-size:16px;
@@ -195,6 +199,10 @@ textarea {
 }
 .revolver-slider:hover .revolver-button,
 .revolver-slider:hover .revolver-manual-buttons {
+	opacity:0.8;
+}
+
+.revolver-slider:hover .revolver-button:hover {
 	opacity:1;
 }
 

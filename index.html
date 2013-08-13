@@ -20,14 +20,11 @@
 			<div class="slide slide-2"></div>
 			<div class="slide slide-3"></div>
 			
-			
-			<a id="prev" class="revolver-prev revolver-button">&larr;</a>
 			<div class="revolver-manual-buttons">
 				<a class="manual-advance active" data-slide="1"></a>
 				<a class="manual-advance" data-slide="2"></a>
 				<a class="manual-advance" data-slide="3"></a>
 			</div>
-			<a id="next" class="revolver-next revolver-button">&rarr;</a>
 		</div>
 		
 		<div class="description">
@@ -51,9 +48,7 @@
 				autoplay			: true,
 				childrenEls			: '.slide',
 				manualButton		: '.manual-advance',
-				nextButton			: '#next',
-				prevButton			: '#prev',
-				pauseOnHover		: true,
+				pauseOnHover		: false,
 				transition			: 'fadeIn',
 				transitionDir		: 'none',
 				afterChange			: function(data) {
