@@ -10,11 +10,15 @@
         <link rel="stylesheet" href="examples/css/main.css">
     </head>
     <body>
-
+		<a href="http://www.letsgetwonderful.com" class="wonderful-logo" title="Wonderful Co." target="_blank"></a>
+		<a href="https://github.com/wndrfl"><img style="position: absolute; top: 0; right: 0; border: 0; z-index:2000;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub" target="_blank"></a>
         <div id="revolver" class="revolver-slider">
-			<div class="slide" style='background-image:url("http://placehold.it/1500x500&amp;text=This+is+the+Revolver+Slider...");'></div>
-			<div class="slide" style='background-image:url("http://placehold.it/1500x500&amp;text=...it+is+easy+to+use...");'></div>
-			<div class="slide" style='background-image:url("http://placehold.it/1500x500&amp;text=...and+looks+sweet.");'></div>
+	
+			<a href="/" class="slider-logo"></a>
+			
+			<div class="slide slide-1"></div>
+			<div class="slide slide-2"></div>
+			<div class="slide slide-3"></div>
 			
 			
 			<a id="prev" class="revolver-prev revolver-button">&larr;</a>
@@ -24,6 +28,15 @@
 				<a class="manual-advance" data-slide="3"></a>
 			</div>
 			<a id="next" class="revolver-next revolver-button">&rarr;</a>
+		</div>
+		
+		<div class="description">
+			<h2>A responsive content slider that just works.</h2>
+			
+			<div class="download-links">
+				<a href="https://github.com/Wndrfl/Revolver">View on Github</a>
+				<a href="https://github.com/Wndrfl/Revolver/archive/master.zip">Download .zip</a>
+			</div>
 		</div>
 
 
@@ -41,8 +54,8 @@
 				nextButton			: '#next',
 				prevButton			: '#prev',
 				pauseOnHover		: true,
-				transition			: 'slide',
-				transitionDir		: 'right',
+				transition			: 'fadeIn',
+				transitionDir		: 'none',
 				afterChange			: function(data) {
 					$('a.manual-advance').each(function() {
 						if($(this).attr('data-slide') == data.currSlide) {
