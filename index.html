@@ -49,13 +49,13 @@
 			},1000);
 			
 			$('#revolver').revolver({
-				autoplay			: true,
-				childrenEls			: '.slide',
-				manualButton		: '.manual-advance',
-				pauseOnHover		: false,
-				transition			: 'fadeIn',
-				transitionDir		: 'none',
-				afterChange			: function(data) {
+				autoplay				: true,
+				childrenEls				: '.slide',
+				manualButton			: '.manual-advance',
+				pauseOnHover			: false,
+				transition				: 'fadeIn',
+				transitionDir			: 'none',
+				beforeChange			: function(data) {
 					$('a.manual-advance').each(function() {
 						if($(this).attr('data-slide') == data.currSlide) {
 							$(this).addClass('active');
