@@ -22,7 +22,6 @@
 			isPaused		: false,
 			prevSlide		: null,
 			reverseOnce		: false,
-			timerStart		: 0,
 			timeout 		: null,
 			wrapperClass	: 'revolver-slide-wrapper'
 		};
@@ -45,8 +44,6 @@
 		
 		// define children
 		var $children = $wrapper.children(settings.childrenEls);
-		
-		// my private parts
 		
 		var determineNextAction = function() {
 			if(!vars.isPaused) {
