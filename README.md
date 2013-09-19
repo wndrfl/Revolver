@@ -186,9 +186,65 @@ If you'd like to customize your Revolver, you can pass it a set of configurable 
 		});
 	});
 	</script>
-	
-autoplay | Whether or now Revolver should start automatically after successfully loading. <i>Boolean; Defaults value: true</i>
-childrenEls | Children elements of the parent element. These elements will be turned into the slides. <i>String; Defaults value: 'div'</i>
+
+<table>
+	<tr>
+		<td><b>autoplay</b></td>
+		<td>Whether or now Revolver should start automatically after successfully loading. <i>Boolean; Default value: true</td>
+	</tr>
+	<tr>
+		<td><b>childrenEls</b></td>
+		<td>Children elements of the parent element. These elements will be turned into the slides. <i>DOM, String; Default value: 'div'</i></td>
+	</tr>
+	<tr>
+		<td><b>debug</b></td>
+		<td>Output debug messages to the console. <i>Boolean; Default value: false</i></td>
+	</tr>
+	<tr>
+		<td><b>hideInactiveSlides</b></td>
+		<td>Visibly hide slides when they aren't in focus. <i>Boolean; Default value: true</i></td>
+	</tr>
+	<tr>
+		<td><b>nextButton</b></td>
+		<td>An Html element that will cause Revolver to progress forward when clicked. <i>DOM, String, null; Default value: null</i></td>
+	</tr>
+	<tr>
+		<td><b>prevButton</b></td>
+		<td>An Html element that will cause Revolver to progress backward when clicked. <i>DOM, String, null; Default value: true</i></td>
+	</tr>
+	<tr>
+		<td><b>pauseOnHover</b></td>
+		<td>Pause the rotation when the mouse is hovered on the parent element. <i>Boolean; Default value: true</i></td>
+	</tr>
+	<tr>
+		<td><b>rotationDelay</b></td>
+		<td>The number of milliseconds before the next rotation begins. <i>Number; Default value: 2000 (2 seconds)</i></td>
+	</tr>
+	<tr>
+		<td><b>transition</b></td>
+		<td>The rotation transition type ('fadeIn', 'fadeOut', 'slide') <i>String; Default value: 'fadeIn'</i></td>
+	</tr>
+	<tr>
+		<td><b>transitionDir</b></td>
+		<td>The transition direction - different options available depending on the value of `transition` ('top', 'right', 'bottom', 'left', 'none') <i>String; Default value: 'none'</i></td>
+	</tr>
+	<tr>
+		<td><b>transitionDuration</b></td>
+		<td>The number of milliseconds each transition will take to complete. <i>Number; Default value: 1000 (1 second)</i></td>
+	</tr>
+	<tr>
+		<td><b>afterLoad</b></td>
+		<td>Callback function to be fired once Revolver has successfully completed initializing. Is passed internal variables. <i>Function, String; Default value: (empty function)</i></td>
+	</tr>
+	<tr>
+		<td><b>afterChange</b></td>
+		<td>Callback function to be fired each time Revolver completes a rotation. Is passed internal variables. <i>Function, String; Default value: (empty function)</i></td>
+	</tr>
+	<tr>
+		<td><b>beforeChange</b></td>
+		<td>Callback function to be fired before Revolver rotates to the next slide. Is passed internal variables. <i>Function, String; Default value: (empty function)</i></td>
+	</tr>
+</table>
 	
 #More Examples
 
