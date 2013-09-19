@@ -179,10 +179,62 @@ If you'd like to customize your Revolver, you can pass it a set of configurable 
 			rotationDelay		: 2000, // milliseconds between revolutions. Default: 2000 (2 seconds)
 			transition			: 'fadeIn', // transition type (fadeIn, fadeOut, slide). Default: 'fadeIn'
 			transitionDir		: 'none', // transistion direction (top, right, bottom, left, none). Default: 'none'
-			transitionDuration		: 1000, // how fast the transition should be in milliseconds. Default: 1000 (1 second)
-			afterLoad			: function() {}, // called after Revolver is initialized
-			afterChange			: function() {}, // called after each slide rotation
-			beforeChange		: function() {} // called before each slide rotation
+			transitionDuration	: 1000, // how fast the transition should be in milliseconds. Default: 1000 (1 second)
+			afterLoad			: function(data) {}, // called after Revolver is initialized
+			afterChange			: function(data) {}, // called after each slide rotation
+			beforeChange		: function(data) {} // called before each slide rotation
+		});
+	});
+	</script>
+	
+autoplay | Whether or now Revolver should start automatically after successfully loading. <i>Boolean; Defaults value: true</i>
+childrenEls | Children elements of the parent element. These elements will be turned into the slides. <i>String; Defaults value: 'div'</i>
+	
+#More Examples
+
+###Changing the state of an element based on the current slide:
+
+Often, it's required to change the state of an element on the page according to which slide is visible at the moment. For example, when using manual transition buttons (like the classic dots that a user can click on to choose which slide they see), it's necessary that the button change color to reflect an "active" or "inactive" state.
+
+Combining Revolver with some basic CSS, here is how we can achieve this:
+
+	<!-- set up styles for inactive and active manual buttons -->
+	<style>
+		.manual-button {
+			background-color:#666666;
+			color:#000000;
+		}
+		
+		.manual-button.active {
+			background-color:#000000;
+			color:#ffffff;
+		}
+	</style>
+	
+	<div id="revolver">
+		<div class="revolver-slide">Revolver slide 1</div>
+		<div class="revolver-slide">Revolver slide 2</div>
+		<div class="revolver-slide">Revolver slide 3</div>
+	</div>
+	
+	<!-- will advance Revolver to specific slides when clicked -->
+	<a href="#" class="manual-button" data-slide="1">Show slide 1</a>
+	<a href="#" class="manual-button" data-slide="2">Show slide 2</a>
+	<a href="#" class="manual-button" data-slide="3">Show slide 3</a>
+	
+	<script>
+	$(document).ready(function() {
+		$('#revolver').revolver({
+			manualButton	: '.manual-button', // the class or ID of the "manual" button(s)
+			beforeChange	: function(data) {
+				$('.manual-button').each(function() {
+					if($(this).attr('data-slide') == data.currSlide) {
+						$(this).addClass('active');
+					}else{
+						$(this).removeClass('active');
+					}
+				});
+			}
 		});
 	});
 	</script>
