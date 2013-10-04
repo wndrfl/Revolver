@@ -65,8 +65,11 @@
 			
 			$children.each(function() {
 				var $child = $(this);
-				$child.css({
-					position	: 'absolute',							
+				var posType = $child.css('position');
+				if(posType != 'relative' && posType != 'absolute') {
+					$child.css('position','absolute');
+				}
+				$child.css({							
 					'top'		: '0',
 					'left'		: '0'
 				});
@@ -119,9 +122,13 @@
 			trace('Setting up parent');
 			
 			$parent.css({
-				position	: 'relative',
-				overflow	: 'hidden'
+				position	: 'relative'
 			});
+			
+			// slides visible outside parent?
+			if(settings.cropSlideshow) {
+				$parent.css('overflow','hidden');
+			}
 			
 			if(settings.pauseOnHover) {
 				$parent.hover(function() {
@@ -165,7 +172,7 @@
 				settings.beforeChange.call(this,vars);
 				
 				// fade in
-				if(settings.transition == 'fadeIn') {
+				if(settings.transitionType == 'fadeIn') {
 					
 					// prepare prev to hide
 					$children.eq(vars.prevSlide-1)
@@ -200,50 +207,9 @@
 							settings.afterChange.call(this,vars);
 						});
 				
-			
-				// fade out
-				} else if(settings.transition == 'fadeOut') {
 				
-					// prepare prev slide
-					$children.eq(vars.prevSlide-1)
-						.removeClass(vars.activeClass)
-						.addClass(vars.inactiveClass)
-						.css({
-							'z-index'	: 101
-						});
-				
-					// prepare curr slide
-					$children
-						.eq(vars.currSlide-1)
-						.removeClass(vars.inactiveClass)
-						.addClass(vars.activeClass)
-						.css({
-							opacity		: 1,
-							top			: 0,
-							left 		: 0,
-							'z-index'	: 100
-						});
-				
-					// fade out params
-					var fadeParams = {
-						opacity		: 0
-					};
-					if(settings.transitionDir == 'right') {
-						fadeParams.left = '+=50'
-					
-					} else if(settings.transitionDir == 'left') {
-						fadeParams.left = '-=50'
-					}
-				
-					$children
-						.eq(vars.prevSlide-1)
-						.animate(fadeParams,settings.transitionDuration,function() {
-							determineNextAction();
-							vars.isAnimating = false;
-							settings.afterChange.call(this,vars);
-					});
-				
-				} else if(settings.transition == 'slide') {
+				// slide in
+				} else if(settings.transitionType == 'slide') {
 				
 					var nextStartParams = {};
 					var nextEndParams = {
@@ -388,6 +354,7 @@
 	$.fn.revolver.defaults = {
 		autoplay			: true,
 		childrenEls			: 'div',
+		cropSlideshow		: true,
 		debug				: false,
 		hideInactiveSlides	: true,
 		nextButton			: null,
@@ -395,9 +362,9 @@
 		prevButton			: null,
 		pauseOnHover		: true,
 		rotationDelay		: 2000,
-		transition			: 'fadeIn',
 		transitionDir		: 'none',
-		transitionDuration		: 1000,
+		transitionDuration	: 1000,
+		transitionType		: 'fadeIn',
 		afterLoad			: function() {},
 		afterChange			: function() {},
 		beforeChange		: function() {}
