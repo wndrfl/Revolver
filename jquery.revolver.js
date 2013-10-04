@@ -1,6 +1,6 @@
 /**
  * Revolver - jQuery Plugin
- * version 1.0.0
+ * version 1.0.1
  * 
  * Copyright 2013 Wonderful Co.
  * Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
