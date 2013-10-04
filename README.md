@@ -149,12 +149,12 @@ Revolver comes with various built-in options for transitioning between slides. I
 	</tr>
 </table>
 
-You can set a transition, transition direction, and transition duration by adding the following settings:
+You can set a transition type, transition direction, and transition duration by adding the following settings:
 
 	<script>
 	$(document).ready(function() {
 		$('#revolver').revolver({
-			transition			: 'fadeIn',
+			transitionType			: 'fadeIn',
 			transitionDir		: 'none',
 			transitionDuration	: 1000, // 1000 = 1 second, 2000 = 2 seconds, etc.
 		});
@@ -170,6 +170,7 @@ If you'd like to customize your Revolver, you can pass it a set of configurable 
 		$('#revolver').revolver({
 			autoplay			: true, // start revolving automatically. Default: true
 			childrenEls			: 'div', // a jQuery pointer to indicate the children divs. Default: 'div'
+			cropSlideshow		: true, // whether to hide the overflow of the parent container. Default: true
 			debug				: false, // output debug messages in console. Default: false
 			hideInactiveSlides	: true, // visibly hide slides when they aren't in focus. Default: true
 			nextButton			: null, // a class or ID of an element. Default: null
@@ -177,7 +178,7 @@ If you'd like to customize your Revolver, you can pass it a set of configurable 
 			prevButton			: null, // a class or ID of an element. Default: null
 			pauseOnHover		: true, // pause Revolver on mouseover. Default: true
 			rotationDelay		: 2000, // milliseconds between revolutions. Default: 2000 (2 seconds)
-			transition			: 'fadeIn', // transition type (fadeIn, fadeOut, slide). Default: 'fadeIn'
+			transitionType		: 'fadeIn', // transition type (fadeIn, slide). Default: 'fadeIn'
 			transitionDir		: 'none', // transistion direction (top, right, bottom, left, none). Default: 'none'
 			transitionDuration	: 1000, // how fast the transition should be in milliseconds. Default: 1000 (1 second)
 			afterLoad			: function(data) {}, // called after Revolver is initialized
@@ -190,11 +191,15 @@ If you'd like to customize your Revolver, you can pass it a set of configurable 
 <table>
 	<tr>
 		<td><b>autoplay</b></td>
-		<td>Whether or now Revolver should start automatically after successfully loading. <i>Boolean; Default value: true</td>
+		<td>Whether or now Revolver should start automatically after successfully loading. <i>Boolean; Default value: true</i></td>
 	</tr>
 	<tr>
 		<td><b>childrenEls</b></td>
 		<td>Children elements of the parent element. These elements will be turned into the slides. <i>DOM, String; Default value: 'div'</i></td>
+	</tr>
+	<tr>
+		<td><b>cropSlideshow</b></td>
+		<td>Hide any part of the slides that extend beyond the boundaries of the slideshow parent. <i>Boolean; Default value: true</i></td>
 	</tr>
 	<tr>
 		<td><b>debug</b></td>
@@ -221,12 +226,12 @@ If you'd like to customize your Revolver, you can pass it a set of configurable 
 		<td>The number of milliseconds before the next rotation begins. <i>Number; Default value: 2000 (2 seconds)</i></td>
 	</tr>
 	<tr>
-		<td><b>transition</b></td>
-		<td>The rotation transition type ('fadeIn', 'fadeOut', 'slide') <i>String; Default value: 'fadeIn'</i></td>
+		<td><b>transitionType</b></td>
+		<td>The rotation transition type ('fadeIn', 'slide') <i>String; Default value: 'fadeIn'</i></td>
 	</tr>
 	<tr>
 		<td><b>transitionDir</b></td>
-		<td>The transition direction - different options available depending on the value of `transition` ('top', 'right', 'bottom', 'left', 'none') <i>String; Default value: 'none'</i></td>
+		<td>The transition direction - different options available depending on the value of `transitionType` ('top', 'right', 'bottom', 'left', 'none') <i>String; Default value: 'none'</i></td>
 	</tr>
 	<tr>
 		<td><b>transitionDuration</b></td>
